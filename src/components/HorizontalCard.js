@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link as RLink} from 'react-router-dom'
 
 const HorizontalCard = (props) => {
     return (
@@ -21,8 +22,8 @@ const HorizontalCard = (props) => {
                     </div>
                 {/* <!-- Card Action --> */}
                 <div className="mdl-card__actions  mdl-card--border">
-                    <a href="/about" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">More About
-                Me</a>
+                    <RLink to="/about" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">More About
+                Me</RLink>
                 </div>
             </div>
         </section>

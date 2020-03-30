@@ -3,6 +3,7 @@ import '../main.css'
 import HorizontalCard from './HorizontalCard'
 import ProjectCard from './ProjectCard'
 import Header from './Header'
+import {Link as RLink} from 'react-router-dom'
 
 //import our projects
 import projects from './projects'
@@ -54,8 +55,8 @@ export default function MainPage(props) {
 
                             {/* <!-- Section with our Portfolio Button --> */}
                             <section className="section--center mdl-grid site-max-width homepage-portfolio">
-                                <a className="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent"
-                                    href="/portfolio">View All Projects</a>
+                                <RLink className="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                                    to="/portfolio">View All Projects</RLink>
                             </section>
 
                         </div>
