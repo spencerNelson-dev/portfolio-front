@@ -2,7 +2,6 @@ import React from 'react'
 import '../main.css'
 import HorizontalCard from './HorizontalCard'
 import ProjectCard from './ProjectCard'
-import Header from './Header'
 import {Link as RLink} from 'react-router-dom'
 
 //import our projects
@@ -29,9 +28,6 @@ export default function MainPage(props) {
 
             <div id="top">
                 <div className=" mdl-layout mdl-js-layout mdl-layout--fixed-header">
-
-                    {/* START OF HEADER */}
-                    <Header></Header>
 
                     {/* START OF MAIN */}
                     <main className="mdl-layout__content">

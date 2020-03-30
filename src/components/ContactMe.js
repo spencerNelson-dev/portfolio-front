@@ -5,7 +5,6 @@ function ContactMe(props) {
     return (
         <div>
             <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                <Header></Header>
                 <main class="mdl-layout__content">
                     <div class="site-content">
                         <div class="mdl-grid site-max-width">
@@ -43,14 +42,6 @@ function ContactMe(props) {
                             </div>
                         </div>
                     </div>
-                    <footer class="mdl-mini-footer">
-                        <div class="footer-container">
-                            <div class="mdl-logo">&copy; Unitiled. Design: <a href="https://templateflip.com/" target="_blank">TemplateFlip</a></div>
-                            <ul class="mdl-mini-footer__link-list">
-                                <li><a href="#">Privacy & Terms</a></li>
-                            </ul>
-                        </div>
-                    </footer>
                 </main>
             </div>
         </div>

@@ -7,7 +7,6 @@ function Portfolio(props) {
     return (
         <div>
             <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-            <Header></Header>
 
             <main className="mdl-layout__content">
                 <div className="site-content">
