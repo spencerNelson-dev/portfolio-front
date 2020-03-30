@@ -7,6 +7,9 @@ import ContactMe from './ContactMe';
 import { LoginProvider } from './LoginContext';
 import Footer from './Footer';
 import Header from './Header';
+import Login from './Login'
+import AdminPage from './AdminPage'
+import ProtectedRoute from './ProtectedRoute';
 // import {AuthProvider} from './AuthContext'
 // import ProtectedRoute from './ProtectedRoute'
 
@@ -14,13 +17,14 @@ function MainRouter(props) {
     return (
         <div>
             <Router>
-
                 <LoginProvider>
                     <Header></Header>
                     <Switch>
                         <Route path='/portfolio' component={Portfolio} />
                         <Route path='/about' component={AboutMe} />
                         <Route path='/contact' component={ContactMe} />
+                        <Route path='/login' component={Login} />
+                        <ProtectedRoute path="/admin" component={AdminPage} />
                         <Route path='/' component={MainPage} />
                     </Switch>
                     <Footer></Footer>

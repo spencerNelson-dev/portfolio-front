@@ -27,7 +27,7 @@ export default function MainPage(props) {
         <div className='main'>
 
             <div id="top">
-                <div className=" mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                <div >
 
                     {/* START OF MAIN */}
                     <main className="mdl-layout__content">

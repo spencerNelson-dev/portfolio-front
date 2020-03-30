@@ -1,10 +1,10 @@
 import React from 'react';
+import Header from './Header'
 
 function AboutMe(props) {
     return (
         <div>
             <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-
             <main class="mdl-layout__content">
       <div class="site-content">
         <div class="mdl-grid site-max-width">

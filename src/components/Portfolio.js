@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './Header';
 import ProjectCard from './ProjectCard'
 import projects from './projects'
 

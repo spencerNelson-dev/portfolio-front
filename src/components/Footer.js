@@ -1,14 +1,15 @@
 import React from 'react';
+import {Link as RLink} from 'react-router-dom'
 
 function Footer(props) {
     return (
         <div>
-            <footer class="mdl-mini-footer">
-                <div class="footer-container">
-                    <div class="mdl-logo">
-                        &copy; Spencer Nelson. Design: 
+            <footer className="mdl-mini-footer">
+                <div className="footer-container">
+                    <div className="mdl-logo">
+                        <RLink to="/login">&copy;</RLink> Spencer Nelson. Design: 
                         <a href="https://templateflip.com/"
-                        target="_blank">TemplateFlip
+                        target="_blank" rel="noopener noreferrer">TemplateFlip
                         </a>
                         </div>
                 </div>
