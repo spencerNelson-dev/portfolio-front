@@ -10,6 +10,7 @@ import Header from './Header';
 import Login from './Login'
 import AdminPage from './AdminPage'
 import ProtectedRoute from './ProtectedRoute';
+import ScrollToTop from './ScrollToTop';
 // import {AuthProvider} from './AuthContext'
 // import ProtectedRoute from './ProtectedRoute'
 
@@ -17,6 +18,7 @@ function MainRouter(props) {
     return (
         <div>
             <Router>
+                <ScrollToTop />
                 <LoginProvider>
                     <Header></Header>
                     <Switch>

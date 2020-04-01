@@ -1,33 +1,31 @@
 import React from 'react';
 import ProjectCard from './ProjectCard'
 import projects from './projects'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
 
 function Portfolio(props) {
+
     return (
         <div>
-            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-
-            <main className="mdl-layout__content">
-                <div className="site-content">
-                <div class="container"><div class="mdl-grid site-max-width">
-                    {/* <!-- Section with project pictures and info --> */}
-                    <section className="section--center mdl-grid site-max-width">
-
+            <br/><br/>
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <Grid container justify="center" spacing={3}>
                         {
                             projects.reverse().map(project => {
                                 return (
-                                    <ProjectCard key={project._id} card={project}></ProjectCard>
+                                    <Grid key={project._id} item
+                                        component ={() => <ProjectCard key={project._id} card={project} />} >
+                                        </Grid>
                                 )
                             })
                         }
-
-                    </section>
-                    {/* <!-- END OF Section with project pictures and info --> */}
-                </div>
-                </div></div>
-            </main>
-            </div>
-        </div>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <br/><br/>
+        </div >
     );
 }
 

@@ -1,33 +1,57 @@
 import React from 'react';
-import {Link as RLink} from 'react-router-dom'
+import { Link as RLink } from 'react-router-dom'
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const HorizontalCard = (props) => {
     return (
+        <div>
+            <div>
+                <Grid container spacing={5} justify='center'>
 
-        <section className="section--center mdl-grid site-max-width">
-            <header
-                className="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color-text--white  mdl-shadow--4dp">
-            </header>
-            <div
-                className="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone  mdl-shadow--4dp">
-                <div className="mdl-card__title">
-                    <h2 className="mdl-card__title-text">Spencer Nelson</h2>
-                </div>
-                {/* <!-- Card supporting text --> */}
-                <div className="mdl-card__supporting-text">
-                    I am a software developer in the Salt Lake area.
-                    My focus is currently on React.js, express.js, MongoDB, and Node.js.
-                    I also have experience working with python and prostgres. Please look
-                    at my projects and see the cool things I've created. Thanks!
-                    </div>
-                {/* <!-- Card Action --> */}
-                <div className="mdl-card__actions  mdl-card--border">
-                    <RLink to="/about" className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">More About
-                Me</RLink>
-                </div>
+                    <Grid item xs={10}>
+                        <Card raised={true}>
+                            <CardContent>
+
+                                <CardMedia
+                                    component="img"
+                                    alt="Hot air balloons"
+                                    height="140"
+                                    image="http://localhost:3001/public/images/about.jpg"
+                                    title="Who is Spencer Nelson"
+                                />
+
+                                {/* Card Title */}
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    Spencer Nelson
+                                </Typography>
+
+                                {/* Card description text */}
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    I am a software developer in the Salt Lake area.
+                                    My focus is currently on React.js, express.js, MongoDB, and Node.js.
+                                    I also have experience working with python and prostgres. Please look
+                                    at my projects and see the cool things I've created. Thanks!
+                                </Typography>
+
+                            </CardContent>
+                            <CardActions>
+                                <Button size="small" color="primary" href='/about'>
+                                    More About Me
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                </Grid>
+
             </div>
-        </section>
 
+        </div>
     );
 };
 

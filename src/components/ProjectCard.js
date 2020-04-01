@@ -1,32 +1,80 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+//import Paper from '@material-ui/core/Paper'
+
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 345,
+        minWidth: 345,
+        margin: 16,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+    },
+    media: {
+        height: 140,
+    },
+});
 
 function ProjectCard(props) {
+    const classes = useStyles();
 
     return (
         <React.Fragment>
-            <div className="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                <div className="mdl-card__media">
-                    <a href={props.card.liveLink}>
-                        <img className="article-image" src={props.card.imgSrc} border="0" alt="" />
-                    </a>
-                </div>
-                <div className="mdl-card__title">
-                    <h2 className="mdl-card__title-text">{props.card.title}</h2>
-                </div>
-                <div className="mdl-card__supporting-text">
-                    {props.card.text}
-            </div> <br />
-                <div className="mdl-card__actions mdl-card--border">
-                    <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
-                        href={props.card.liveLink}>
-                        Live Site
-              </a>
-                    <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
-                        href={props.card.gitHubLinks[0]}>
+            {/* classes.root */}
+            <Card className={classes.root} raised={true}> 
+
+                {/* Card picture */}
+                <CardMedia
+                    className={classes.media}
+                    image={`http://localhost:3001/public/images/${props.card.imgSrc}`}
+                    title="Contemplative Reptile"
+                />
+
+                <CardContent>
+
+                    {/* Card Title */}
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {props.card.title}
+                    </Typography>
+
+                    {/* Card description text */}
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {props.card.text}
+                    </Typography>
+
+                </CardContent>
+
+
+                <CardActions>
+
+                    {/* Live Site button */}
+                    {
+                        props.card.liveLink !== "" ? (
+
+                            <Button size="small" color="primary">
+                                Live Site
+                            </Button>
+
+                        ) : (
+                                null
+                            )
+                    }
+
+                    {/* GitHub button */}
+                    <Button size="small" color="primary">
                         GitHub
-              </a>
-                </div>
-            </div>
+                    </Button>
+
+                </CardActions>
+            </Card>
+
 
         </React.Fragment>
     );

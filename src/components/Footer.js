@@ -1,19 +1,31 @@
 import React from 'react';
-import {Link as RLink} from 'react-router-dom'
+import { Link as RLink } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import CopyrightIcon from '@material-ui/icons/Copyright';
+import PaletteIcon from '@material-ui/icons/Palette';
+
+const useStyles = makeStyles({
+    root: {
+        width: 500,
+    },
+});
 
 function Footer(props) {
+    const classes = useStyles();
+
     return (
         <div>
-            <footer className="mdl-mini-footer">
-                <div className="footer-container">
-                    <div className="mdl-logo">
-                        <RLink to="/login">&copy;</RLink> Spencer Nelson. Design: 
-                        <a href="https://templateflip.com/"
-                        target="_blank" rel="noopener noreferrer">TemplateFlip
-                        </a>
-                        </div>
-                </div>
-            </footer>
+            <BottomNavigation
+                showLabels
+                className={classes.root}
+            >
+                <BottomNavigationAction component={RLink} to='/login' label="Spencer Nelson" icon={<CopyrightIcon />} />
+                
+                <BottomNavigationAction href="https://templateflip.com/" target="_blank" rel="noopener noreferrer"  label="templateflip.com" icon={<PaletteIcon />} >
+                </BottomNavigationAction>
+            </BottomNavigation>
 
         </div>
     );

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../main.css'
 import HorizontalCard from './HorizontalCard'
 import ProjectCard from './ProjectCard'
-import {Link as RLink} from 'react-router-dom'
+import { Link as RLink } from 'react-router-dom'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 
 //import our projects
 import projects from './projects'
@@ -12,7 +14,7 @@ function getThreeProjects(projects) {
 
     let rtnArr = []
 
-    for (let index = 0; index < projects.length && index < 3; index++){
+    for (let index = 0; index < projects.length && index < 3; index++) {
         rtnArr.push(projects[index])
     }
 
@@ -24,43 +26,38 @@ function getThreeProjects(projects) {
 export default function MainPage(props) {
 
     return (
-        <div className='main'>
+        <div>
+            {/* <!-- Section with horizontal card --> */}
+            <HorizontalCard></HorizontalCard>
 
-            <div id="top">
-                <div >
+            {/* <!-- Section with project pictures and info --> */}
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <Grid container justify="center" spacing={3} alignItems='stretch' >
+                        {
+                            getThreeProjects(projects).map(project => {
+                                return (
+                                    <Grid key={project._id} item
+                                        component={() => <ProjectCard key={project._id} card={project} />} >
+                                    </Grid>
+                                )
+                            })
+                        }
+                    </Grid>
+                </Grid>
+            </Grid>
 
-                    {/* START OF MAIN */}
-                    <main className="mdl-layout__content">
-                        <div className="site-content">
-
-                            {/* <!-- Section with horizontal card --> */}
-                            <HorizontalCard></HorizontalCard>
-
-                            {/* <!-- Section with project pictures and info --> */}
-                            <section className="section--center mdl-grid site-max-width">
-
-                                {
-                                    getThreeProjects(projects).map(project => {
-                                        return (
-                                            <ProjectCard key={project._id} card={project}></ProjectCard>
-                                        )
-                                    })
-                                }
-
-                            </section>
-
-                            {/* <!-- Section with our Portfolio Button --> */}
-                            <section className="section--center mdl-grid site-max-width homepage-portfolio">
-                                <RLink className="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent"
-                                    to="/portfolio">View All Projects</RLink>
-                            </section>
-
-                        </div>
-
-                    </main>
-
-                </div>
+            <br /><br />
+            {/* <!-- Section with our Portfolio Button --> */}
+            <div style={{ textAlign: 'center' }}>
+                <Button variant="contained"
+                    color="secondary"
+                    component={RLink}
+                    to='/portfolio'>
+                        View All Projects
+                </Button>
             </div>
+
         </div>
     )
 }
