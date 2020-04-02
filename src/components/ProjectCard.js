@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 //import Paper from '@material-ui/core/Paper'
+import consts from '../consts'
 
 const useStyles = makeStyles({
     root: {
@@ -33,7 +34,7 @@ function ProjectCard(props) {
                 {/* Card picture */}
                 <CardMedia
                     className={classes.media}
-                    image={`http://localhost:3001/public/images/${props.card.imgSrc}`}
+                    image={`${consts.uriBase}/public/images/${props.card.imgSrc}`}
                     title="Contemplative Reptile"
                 />
 

@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import consts from '../consts'
 
 const HorizontalCard = (props) => {
     return (
@@ -22,7 +23,7 @@ const HorizontalCard = (props) => {
                                     component="img"
                                     alt="Hot air balloons"
                                     height="140"
-                                    image="http://localhost:3001/public/images/about.jpg"
+                                    image={`${consts.uriBase}/public/images/about.jpg`}
                                     title="Who is Spencer Nelson"
                                 />
 

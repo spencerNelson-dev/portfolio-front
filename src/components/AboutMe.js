@@ -5,6 +5,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import consts from '../consts'
 
 function AboutMe(props) {
   return (
@@ -19,7 +20,7 @@ function AboutMe(props) {
                 component="img"
                 alt="Hot air balloons"
                 height="140"
-                image="http://localhost:3001/public/images/about.jpg"
+                image={`${consts.uriBase}/public/images/about.jpg`}
                 title="Who is Spencer Nelson"
               />
               <CardContent>
