@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import { ProjectsContext } from './ProjectsContext'
 
-//function to get only two projects
+//function to get only three projects
 function getThreeProjects(projects, setProjects) {
 
     let rtnArr = []
@@ -15,8 +15,6 @@ function getThreeProjects(projects, setProjects) {
     for (let index = 0; index < projects.length && index < 3; index++) {
         rtnArr.push(projects[index])
     }
-
-    console.log(rtnArr)
 
     return rtnArr
 }

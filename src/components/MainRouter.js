@@ -12,7 +12,6 @@ import Login from './Login'
 import AdminPage from './AdminPage'
 import ProtectedRoute from './ProtectedRoute';
 import ScrollToTop from './ScrollToTop';
-import VerifyToken from './VerifyToken'
 
 function MainRouter(props) {
     return (
@@ -21,17 +20,16 @@ function MainRouter(props) {
                 <ScrollToTop />
                 <LoginProvider>
                     <ProjectsProvider>
-                    <VerifyToken />
-                    <Header></Header>
-                    <Switch>
-                        <Route path='/portfolio' component={Portfolio} />
-                        <Route path='/about' component={AboutMe} />
-                        <Route path='/contact' component={ContactMe} />
-                        <Route path='/login' component={Login} />
-                        <ProtectedRoute path="/admin" component={AdminPage} />
-                        <Route path='/' component={MainPage} />
-                    </Switch>
-                    <Footer></Footer>
+                        <Header></Header>
+                        <Switch>
+                            <Route path='/portfolio' component={Portfolio} />
+                            <Route path='/about' component={AboutMe} />
+                            <Route path='/contact' component={ContactMe} />
+                            <Route path='/login' component={Login} />
+                            <ProtectedRoute path="/admin" component={AdminPage} />
+                            <Route path='/' component={MainPage} />
+                        </Switch>
+                        <Footer></Footer>
                     </ProjectsProvider>
                 </LoginProvider>
             </Router>

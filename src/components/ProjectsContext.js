@@ -39,7 +39,7 @@ const ProjectsProvider = (props) => {
         //only go to the server the
         //first time the app loads
         if( projects.length === 0){
-            console.log("if []")
+
             getProjects()
             .then(result => {
                 setProjects(result)
@@ -49,9 +49,6 @@ const ProjectsProvider = (props) => {
             getImgNames()
         }
     },[])
-
-
-    console.log("projects context render")
 
     return (
         <ProjectsContext.Provider value={{ projects, setProjects, images, setImages }}>

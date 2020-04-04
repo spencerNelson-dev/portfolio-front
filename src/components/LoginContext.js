@@ -6,7 +6,7 @@ const LoginContext = React.createContext()
 
 const LoginProvider = (props) => {
 
-    const [loggedIn, setLoggedIn] = useState(true)
+    const [loggedIn, setLoggedIn] = useState(false)
     const [token, setToken] = useState('')
 
     // want to write to local storage.
@@ -16,48 +16,21 @@ const LoginProvider = (props) => {
         window.localStorage.setItem("token", token)
 
         setToken(token)
+        setLoggedIn(true)
     }
 
-    const verifyToken = () => {
+    useEffect( () => {
+        console.log("auth context useffect")
 
-        let token = window.localStorage.getItem('token')
+        window.localStorage.getItem(token)
 
-        console.log("verifyToken called")
-
-        fetch(`${consts.uriBase}${consts.authRoute}/verifyToken`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ token })
-        })
-            .then(httpResult => {
-                if (!httpResult.ok) {
-                    throw new Error("Failed to validate token")
-                }
-
-                return httpResult.json()
-            })
-            .then(response => {
-                console.log("response",response)
-                setLoggedIn(response)
-                setToken(token)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-
-    }
-
-    useEffect(() => {
-
-        //verifyToken()
+        if(token){
+            loggedIn(true)
+        }
     }, [])
 
-
-
     return (
-        <LoginContext.Provider value={{ loggedIn, setLoggedIn, token, writeToken, verifyToken }}>
+        <LoginContext.Provider value={{ loggedIn, setLoggedIn, token, writeToken}}>
             {props.children}
         </LoginContext.Provider>
     )

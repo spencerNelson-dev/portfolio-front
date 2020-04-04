@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import consts from '../consts'
-import {LoginContext} from './LoginContext'
+import { LoginContext } from './LoginContext'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,49 +37,50 @@ export default function SignIn(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const {writeToken} = useContext(LoginContext)
+  const { writeToken } = useContext(LoginContext)
 
-  const onClick = async () => {
+  const onClick = () => {
 
-    // set the default token to empty string
-    let token = ""
-
-    try {
-
-      // post the email and password from the inputs to the
-      // auth login api
-      // and get the token if the email/password is valid
-      token = await fetch(`${consts.uriBase}${consts.authRoute}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-      })
-      .then(httpResult => {
-
-        // if the resonse is ok
-        if(!httpResult.ok){
-          throw new Error("Failed to log in")
+    // send the email and password
+    // to the login api and expect
+    // a token in return if successful
+    // or an empty string if not
+    fetch(`${consts.uriBase}${consts.authRoute}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    })
+      .then(httpResponse => {
+        if (!httpResponse.ok) {
+          throw new Error("Login Failed")
         }
-        
-        // return the token
-        return httpResult.json()
+
+        return httpResponse.json()
       })
-    } catch (error) {
-      // if there is an error send an alert
-      alert(error.message)
-    }
+      .then(token => {
 
-    // if the token is not empty put the token in storage
-    // else display an alert
-    token !== "" ? writeToken(token) : alert("Incorrect Email/Password")
+        //if we get a token back
+        if (token !== "") {
 
-    setEmail("")
-    setPassword("")
+          // store the token in local storage
+          writeToken(token)
+        } else {
 
-    props.history.push('/admin')
+          //let the user know that the
+          //password/email combo was not valid
+          alert("Incorrect email and password!")
+        }
 
+        //clear state
+        setEmail('')
+        setPassword('')
+
+        //move the user to the admin page
+        props.history.push('/admin')
+
+      })
   }
 
   return (
