@@ -5,14 +5,14 @@ import Portfolio from './Portfolio'
 import AboutMe from './AboutMe';
 import ContactMe from './ContactMe';
 import { LoginProvider } from './LoginContext';
+import { ProjectsProvider } from './ProjectsContext'
 import Footer from './Footer';
 import Header from './Header';
 import Login from './Login'
 import AdminPage from './AdminPage'
 import ProtectedRoute from './ProtectedRoute';
 import ScrollToTop from './ScrollToTop';
-// import {AuthProvider} from './AuthContext'
-// import ProtectedRoute from './ProtectedRoute'
+import VerifyToken from './VerifyToken'
 
 function MainRouter(props) {
     return (
@@ -20,6 +20,8 @@ function MainRouter(props) {
             <Router>
                 <ScrollToTop />
                 <LoginProvider>
+                    <ProjectsProvider>
+                    <VerifyToken />
                     <Header></Header>
                     <Switch>
                         <Route path='/portfolio' component={Portfolio} />
@@ -30,6 +32,7 @@ function MainRouter(props) {
                         <Route path='/' component={MainPage} />
                     </Switch>
                     <Footer></Footer>
+                    </ProjectsProvider>
                 </LoginProvider>
             </Router>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,6 +7,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import consts from '../consts'
+import {LoginContext} from './LoginContext'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,10 +37,49 @@ export default function SignIn(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const onClick = () => {
+  const {writeToken} = useContext(LoginContext)
 
-    console.log("clicked", email, password)
+  const onClick = async () => {
+
+    // set the default token to empty string
+    let token = ""
+
+    try {
+
+      // post the email and password from the inputs to the
+      // auth login api
+      // and get the token if the email/password is valid
+      token = await fetch(`${consts.uriBase}${consts.authRoute}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      })
+      .then(httpResult => {
+
+        // if the resonse is ok
+        if(!httpResult.ok){
+          throw new Error("Failed to log in")
+        }
+        
+        // return the token
+        return httpResult.json()
+      })
+    } catch (error) {
+      // if there is an error send an alert
+      alert(error.message)
+    }
+
+    // if the token is not empty put the token in storage
+    // else display an alert
+    token !== "" ? writeToken(token) : alert("Incorrect Email/Password")
+
+    setEmail("")
+    setPassword("")
+
     props.history.push('/admin')
+
   }
 
   return (
@@ -52,43 +93,41 @@ export default function SignIn(props) {
           <Typography component="h1" variant="h5">
             Sign in
         </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={onClick}
-            >
-              Sign In
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={onClick}
+          >
+            Sign In
           </Button>
-          </form>
         </div>
       </Container>
     </div>

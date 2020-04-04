@@ -3,8 +3,9 @@ import portfolio1 from '../img/portfolio1.jpg'
 import portfolio2 from '../img/portfolio2.jpg'
 import portfolio3 from '../img/portfolio3.jpg'
 import portfolio4 from '../img/portfolio4.jpg'
+import consts from '../consts'
 
-export default [
+let DUMMY_DATA = [
     {
         "_id": 0,
         "title": "Task Manager",
@@ -52,3 +53,37 @@ export default [
     }
     
 ]
+
+const getProjects = () => {
+
+     return fetch(`${consts.uriBase}${consts.projectsRoute}`,{
+        method:"GET"
+    })
+    .then(httpResponse => {
+        if(!httpResponse.ok){
+            throw new Error("Could not get all projects")
+        }
+
+        return httpResponse.json()
+    })
+    .then(result => {
+
+        // if there are no projects found
+        // use the hard coded data
+        if (result === []){
+            return DUMMY_DATA
+        }
+
+        return result
+    })
+    .catch(error => {
+        console.log(error)
+        // if there is an error
+        // use the dummy data
+        return DUMMY_DATA
+    })
+}
+
+
+
+export default getProjects

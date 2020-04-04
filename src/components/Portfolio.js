@@ -1,30 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ProjectCard from './ProjectCard'
-import projects from './projects'
+import getProjects from './projects'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
+import {ProjectsContext} from './ProjectsContext'
 
 function Portfolio(props) {
 
+    const {projects, setProjects} = useContext(ProjectsContext)
+
+    console.log("portfolio",projects)
+
     return (
         <div>
-            <br/><br/>
+            <br /><br />
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Grid container justify="center" spacing={3}>
                         {
-                            projects.reverse().map(project => {
+                            projects.map(project => {
                                 return (
                                     <Grid key={project._id} item
-                                        component ={() => <ProjectCard key={project._id} card={project} />} >
-                                        </Grid>
+                                        component={() => <ProjectCard key={project._id}
+                                            card={project}
+                                            setProjects={setProjects}
+                                            projects={projects} />} >
+                                    </Grid>
                                 )
                             })
                         }
                     </Grid>
                 </Grid>
             </Grid>
-            <br/><br/>
+            <br /><br />
         </div >
     );
 }

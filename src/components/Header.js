@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link as RLink } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,6 +17,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import MailIcon from '@material-ui/icons/Mail';
 import TableChartIcon from '@material-ui/icons/TableChart';
+
+import {LoginContext} from './LoginContext'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -67,6 +69,8 @@ function Header(props) {
 
     const [openDrawer, setOpenDrawer] = useState(false)
 
+    const {loggedIn, setLoggedIn} = useContext(LoginContext)
+
     const onClickHandler = () => {
 
         setOpenDrawer(!openDrawer)
@@ -87,7 +91,8 @@ function Header(props) {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
-                            Spencer Nelson (This website is in progress)
+                            Spencer Nelson {loggedIn ? <RLink to="/admin">Admin</RLink> : null}
+                            {loggedIn ? <Button onClick={()=>(setLoggedIn(false))}>Log Out</Button> : null}
                         </Typography>
                         <Button color="inherit" component={RLink} to='/'>Home</Button>
                         <Button color="inherit" component={RLink} to='/portfolio'>Portfolio</Button>

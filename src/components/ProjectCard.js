@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 //import Paper from '@material-ui/core/Paper'
 import consts from '../consts'
+import {LoginContext} from './LoginContext'
 
 const useStyles = makeStyles({
     root: {
@@ -25,6 +26,58 @@ const useStyles = makeStyles({
 
 function ProjectCard(props) {
     const classes = useStyles();
+
+    const {loggedIn} = useContext(LoginContext)
+
+    const [card, setCard] = useState('')
+    const [id, setId] = useState(props.card._id)
+
+    const onClickDelete = () => {
+
+        fetch(`${consts.uriBase}${consts.projectsRoute}/${props.card._id}`,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(httpResponse => {
+            if(!httpResponse.ok){
+                throw new Error("Could not delete object")
+            }
+
+            return httpResponse.json()
+        })
+        .then(result => {
+
+            // if the result comes back with a deleted count of 1
+            // update the state of the projects array
+            if(result.deletedCount === 1){
+
+                // update our projects array
+                let newList = [...props.projects]
+
+                let index
+
+                // find the indexOf the deleted project
+                for (let project of newList){
+
+                    if(project._id === id){
+                        index = newList.indexOf(project)
+                    }
+                }
+
+                //remove it from the projects array
+                newList.splice(index, 1)
+
+                //set the state
+                props.setProjects(newList)
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+    }
 
     return (
         <React.Fragment>
@@ -59,7 +112,7 @@ function ProjectCard(props) {
                     {
                         props.card.liveLink !== "" ? (
 
-                            <Button size="small" color="primary">
+                            <Button href={props.card.liveLink} size="small" color="primary">
                                 Live Site
                             </Button>
 
@@ -69,9 +122,25 @@ function ProjectCard(props) {
                     }
 
                     {/* GitHub button */}
-                    <Button size="small" color="primary">
-                        GitHub
-                    </Button>
+                    {
+                        props.card.gitHubLinks !== [] ? (
+                            props.card.gitHubLinks.map((value, index)=> {
+                                return(
+                                    <Button key={value} href={value} color="primary">{`GitHub ${index + 1}`}</Button>
+                                )
+                            })
+                        ):(
+                            null
+                        )
+                    }
+                    {/* Delete Button (only if logged in) */}
+                    {
+                        loggedIn ? (
+                            <Button onClick={onClickDelete} color='secondary'>Delete</Button>
+                        ):(
+                            null
+                        )
+                    }
 
                 </CardActions>
             </Card>

@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import '../main.css'
 import HorizontalCard from './HorizontalCard'
 import ProjectCard from './ProjectCard'
 import { Link as RLink } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import {ProjectsContext} from './ProjectsContext'
 
 //import our projects
-import projects from './projects'
+import getProjects from './projects'
 
 //function to get only two projects
-function getThreeProjects(projects) {
+function getThreeProjects(projects, setProjects) {
 
     let rtnArr = []
 
@@ -24,6 +25,8 @@ function getThreeProjects(projects) {
 }
 
 export default function MainPage(props) {
+
+    const {projects} = useContext(ProjectsContext)
 
     return (
         <div>
