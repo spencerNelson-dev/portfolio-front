@@ -5,10 +5,7 @@ import ProjectCard from './ProjectCard'
 import { Link as RLink } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-import {ProjectsContext} from './ProjectsContext'
-
-//import our projects
-import getProjects from './projects'
+import { ProjectsContext } from './ProjectsContext'
 
 //function to get only two projects
 function getThreeProjects(projects, setProjects) {
@@ -26,7 +23,7 @@ function getThreeProjects(projects, setProjects) {
 
 export default function MainPage(props) {
 
-    const {projects} = useContext(ProjectsContext)
+    const { projects, setProjects } = useContext(ProjectsContext)
 
     return (
         <div>
@@ -41,7 +38,10 @@ export default function MainPage(props) {
                             getThreeProjects(projects).map(project => {
                                 return (
                                     <Grid key={project._id} item
-                                        component={() => <ProjectCard key={project._id} card={project} />} >
+                                        component={() => <ProjectCard key={project._id}
+                                            card={project}
+                                            projects={projects}
+                                            setProjects={setProjects} />} >
                                     </Grid>
                                 )
                             })
@@ -57,7 +57,7 @@ export default function MainPage(props) {
                     color="secondary"
                     component={RLink}
                     to='/portfolio'>
-                        View All Projects
+                    View All Projects
                 </Button>
             </div>
 
