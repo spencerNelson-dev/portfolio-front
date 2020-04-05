@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 function ProjectCard(props) {
     const classes = useStyles();
 
-    const {loggedIn} = useContext(LoginContext)
+    const {loggedIn, token} = useContext(LoginContext)
 
     const [card, setCard] = useState('')
     const [id, setId] = useState(props.card._id)
@@ -37,11 +37,13 @@ function ProjectCard(props) {
         fetch(`${consts.uriBase}${consts.projectsRoute}/${props.card._id}`,{
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json"
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
             }
         })
         .then(httpResponse => {
             if(!httpResponse.ok){
+                
                 throw new Error("Could not delete object")
             }
 
@@ -72,6 +74,9 @@ function ProjectCard(props) {
                 //set the state
                 props.setProjects(newList)
             }
+            else {
+                alert("Not Authorized")
+            }
         })
         .catch(error => {
             console.log(error)
@@ -90,7 +95,6 @@ function ProjectCard(props) {
                     image={`${consts.uriBase}/public/images/${props.card.imgSrc}`}
                     title="Contemplative Reptile"
                 />
-
                 <CardContent>
 
                     {/* Card Title */}

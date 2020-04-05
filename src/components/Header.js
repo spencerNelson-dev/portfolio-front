@@ -76,6 +76,14 @@ function Header(props) {
         setOpenDrawer(!openDrawer)
     }
 
+    const onClickLogOut = () => {
+        //remove token from local storage
+        window.localStorage.removeItem('token')
+
+        // set logged in to false
+        setLoggedIn(false)
+    }
+
     return (
 
         <div>
@@ -92,7 +100,7 @@ function Header(props) {
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
                             Spencer Nelson {loggedIn ? <RLink to="/admin">Admin</RLink> : null}
-                            {loggedIn ? <Button onClick={()=>(setLoggedIn(false))}>Log Out</Button> : null}
+                            {loggedIn ? <Button onClick={onClickLogOut}>Log Out</Button> : null}
                         </Typography>
                         <Button color="inherit" component={RLink} to='/'>Home</Button>
                         <Button color="inherit" component={RLink} to='/portfolio'>Portfolio</Button>

@@ -161,6 +161,8 @@ function AdminEditProject(props) {
                     //Clear the inputs
                     clearInputs()
 
+                } else {
+                    alert("Nothing changed")
                 }
             })
             .catch(error => {

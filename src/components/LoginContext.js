@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import consts from '../consts'
+import jwt from 'jsonwebtoken'
 
 
 const LoginContext = React.createContext()
@@ -19,18 +20,33 @@ const LoginProvider = (props) => {
         setLoggedIn(true)
     }
 
-    useEffect( () => {
-        console.log("auth context useffect")
+    useEffect(() => {
 
-        window.localStorage.getItem(token)
+        let localToken = window.localStorage.getItem('token')
 
-        if(token){
-            loggedIn(true)
-        }
+        // if a token is in local storage
+        if (localToken) {
+
+            // decode the token
+            let payload = jwt.decode(localToken)
+
+            // Check if the token is expired
+            if (Date.now().valueOf() / 1000 >= payload.exp) {
+
+                // alert
+                alert("You have been logged out due to inactivity.")
+                setLoggedIn(false)
+            } else {
+                // the token is not expired
+                setToken(localToken)
+                setLoggedIn(true)
+            }
+
+        }// end of if
     }, [])
 
     return (
-        <LoginContext.Provider value={{ loggedIn, setLoggedIn, token, writeToken}}>
+        <LoginContext.Provider value={{ loggedIn, setLoggedIn, token, writeToken }}>
             {props.children}
         </LoginContext.Provider>
     )

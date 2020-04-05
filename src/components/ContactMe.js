@@ -3,7 +3,7 @@ import React from 'react';
 function ContactMe(props) {
     return (
         <div>
-           Under construction
+           Email: spencernelson144@gmail.com
         </div>
     );
 }

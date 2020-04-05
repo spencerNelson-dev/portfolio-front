@@ -46,8 +46,6 @@ function AdminCreateProject(props) {
 
         event.preventDefault()
 
-        console.log(imgSrc)
-
         let newProject = {
             title,
             text,

@@ -8,8 +8,6 @@ function Portfolio(props) {
 
     const {projects, setProjects} = useContext(ProjectsContext)
 
-    console.log("portfolio",projects)
-
     return (
         <div>
             <br /><br />
