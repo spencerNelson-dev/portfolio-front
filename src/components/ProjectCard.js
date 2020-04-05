@@ -28,9 +28,7 @@ function ProjectCard(props) {
     const classes = useStyles();
 
     const {loggedIn, token} = useContext(LoginContext)
-
-    const [card, setCard] = useState('')
-    const [id, setId] = useState(props.card._id)
+    const [id] = useState(props.card._id)
 
     const onClickDelete = () => {
 
@@ -43,7 +41,7 @@ function ProjectCard(props) {
         })
         .then(httpResponse => {
             if(!httpResponse.ok){
-                
+
                 throw new Error("Could not delete object")
             }
 

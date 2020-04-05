@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import consts from '../consts'
 import jwt from 'jsonwebtoken'
 
 
