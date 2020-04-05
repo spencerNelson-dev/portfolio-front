@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {useContext } from 'react';
 import ProjectCard from './ProjectCard'
-import getProjects from './projects'
 import Grid from '@material-ui/core/Grid'
 import {ProjectsContext} from './ProjectsContext'
 

@@ -1,11 +1,9 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {Route, Redirect} from 'react-router-dom'
-import {LoginConsumer, LoginContext} from './LoginContext'
+import {LoginConsumer} from './LoginContext'
 
 
 export default function ProtectedRoute ({component: Component, ...rest}) {
-
-    const {loggedIn} = useContext(LoginContext)
 
     return (
         <LoginConsumer>

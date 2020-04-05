@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
-import '../main.css'
+import React, { useContext } from 'react'
 import HorizontalCard from './HorizontalCard'
 import ProjectCard from './ProjectCard'
 import { Link as RLink } from 'react-router-dom'

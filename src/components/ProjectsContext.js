@@ -48,7 +48,7 @@ const ProjectsProvider = (props) => {
         if(images.length === 0){
             getImgNames()
         }
-    },[])
+    },[images.length, projects.length])
 
     return (
         <ProjectsContext.Provider value={{ projects, setProjects, images, setImages }}>
