@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Input from '@material-ui/core/Input'
 import Button from '@material-ui/core/Button'
 import { Paper } from '@material-ui/core';
+import consts from '../consts'
 
 function UploadFile(props) {
 
@@ -17,7 +18,7 @@ function UploadFile(props) {
         data.append('file', file)
         data.append('filename', file.name)
 
-        fetch(`http://localhost:3001/api/v1/projects/img/upload`, {
+        fetch(`${consts.uriBase}${consts.projectsRoute}/img/upload`, {
             method: "POST",
             body: data
         })
