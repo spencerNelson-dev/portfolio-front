@@ -6,6 +6,7 @@ import consts from '../consts'
 import { ProjectsContext } from './ProjectsContext';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem'
+import { LoginContext } from './LoginContext';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,6 +40,7 @@ function AdminEditProject(props) {
     const [currentProject, setCurrentProject] = useState({})
 
     const { images, projects, setProjects } = useContext(ProjectsContext)
+    const {token} = useContext(LoginContext)
 
     const clearInputs = () => {
         setId('')
@@ -124,7 +126,8 @@ function AdminEditProject(props) {
             fetch(`${consts.uriBase}${consts.projectsRoute}/${id}`, {
                 method: "PATCH",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(changes)
             })

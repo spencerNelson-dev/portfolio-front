@@ -6,6 +6,7 @@ import consts from '../consts'
 import { ProjectsContext } from './ProjectsContext';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem'
+import { LoginContext } from './LoginContext';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +34,7 @@ function AdminCreateProject(props) {
     const [imgSrc, setImgSrc] = useState('')
 
     const { images, projects, setProjects } = useContext(ProjectsContext)
+    const {token} = useContext(LoginContext)
 
     const clearInputs = () => {
         setTitle('')
@@ -57,7 +59,8 @@ function AdminCreateProject(props) {
         fetch(`${consts.uriBase}${consts.projectsRoute}`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(newProject)
         })

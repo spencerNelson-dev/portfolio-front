@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Input from '@material-ui/core/Input'
 import Button from '@material-ui/core/Button'
 import { Paper } from '@material-ui/core';
 import consts from '../consts'
+import { LoginContext } from './LoginContext';
 
 function UploadFile(props) {
 
     const [file, setFile] = useState('')
+
+    const {token} = useContext(LoginContext)
 
 
     const onUploadHandler = (event) => {
@@ -20,6 +23,9 @@ function UploadFile(props) {
 
         fetch(`${consts.uriBase}${consts.projectsRoute}/img/upload`, {
             method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
             body: data
         })
             .then(httpResponse => {
@@ -32,7 +38,6 @@ function UploadFile(props) {
             .then(response => {
                 alert(response)
                 setFile('')
-                window.location.reload(false)
             })
             .catch(error => {
                 alert(error)
