@@ -35,6 +35,7 @@ const LoginProvider = (props) => {
                 // alert
                 alert("You have been logged out due to inactivity.")
                 setLoggedIn(false)
+                window.localStorage.removeItem('token')
             } else {
                 // the token is not expired
                 setToken(localToken)
