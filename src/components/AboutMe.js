@@ -31,6 +31,7 @@ function AboutMe(props) {
 
                 <Typography variant="body2" color="textSecondary" component="p">
                   Coming soon
+                  <a href="https://wonderful-bhabha-1bf181.netlify.com">events</a>
                </Typography>
 
                 <Typography gutterBottom variant="h5" component="h2">
