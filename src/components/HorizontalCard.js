@@ -52,7 +52,7 @@ const HorizontalCard = (props) => {
                                 </Typography>
 
                                 {/* Card description text */}
-                                <Typography variant="body2" color="textSecondary" component="p">
+                                <Typography variant="body2" color="textPrimary" component="p">
                                     {getText('MainPage-Introduction')}
                                 </Typography>
 

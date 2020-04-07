@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {ProjectsContext} from './ProjectsContext'
+import React, { useContext, useState } from 'react';
+import { ProjectsContext } from './ProjectsContext'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -10,20 +10,35 @@ import consts from '../consts'
 
 function AboutMe(props) {
 
-  const {texts} = useContext(ProjectsContext)
+  const { texts } = useContext(ProjectsContext)
 
-  const getText = (location) => {
+  const [textArray, setTextArray] = useState([])
+  const [textArray2, setTextArray2] = useState([])
 
-    let rtnValue = ''
+  const getText = (location, setState) => {
 
-    for(let element of texts){
-        if(element.location === location){
-            rtnValue = element.text
+    if (texts.length > 0 && textArray.length === 0) {
+
+      let rtnValue = ''
+
+      for (let element of texts) {
+        if (element.location === location) {
+          rtnValue = element.text
         }
-    }
+      }
 
-    return rtnValue
-}
+      let newTextArray = rtnValue.split("\n\n")
+
+      if (newTextArray.length > 1) {
+        setState(newTextArray)
+      }
+
+    }
+  }
+
+  getText('About-Introduction', setTextArray)
+  getText('About-Mission', setTextArray2)
+
   return (
     <div>
 
@@ -45,17 +60,31 @@ function AboutMe(props) {
                   Introduction
                 </Typography>
 
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {getText('About-Introduction')}
-               </Typography>
+                {
+                  textArray.map(value => {
+
+                    return (
+                      <Typography style={{ margin: 10 }} key={value} variant="body2" color="textPrimary" component="p">
+                        {value}
+                      </Typography>
+                    )
+                  })
+                }
 
                 <Typography gutterBottom variant="h5" component="h2">
                   Mission
                 </Typography>
 
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {getText('About-Mission')}
-               </Typography>
+                {
+                  textArray2.map(value => {
+
+                    return (
+                      <Typography style={{ margin: 10 }} key={value} variant="body2" color="textPrimary" component="p">
+                        {value}
+                      </Typography>
+                    )
+                  })
+                }
 
               </CardContent>
             </Card>

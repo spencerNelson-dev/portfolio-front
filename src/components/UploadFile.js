@@ -4,12 +4,14 @@ import Button from '@material-ui/core/Button'
 import { Paper } from '@material-ui/core';
 import consts from '../consts'
 import { LoginContext } from './LoginContext';
+import { ProjectsContext } from './ProjectsContext'
 
 function UploadFile(props) {
 
     const [file, setFile] = useState('')
 
     const {token} = useContext(LoginContext)
+    const {images, setImages} = useContext(ProjectsContext)
 
 
     const onUploadHandler = (event) => {
@@ -37,6 +39,15 @@ function UploadFile(props) {
             })
             .then(response => {
                 alert(response)
+
+                if(response === 'File Uploaded!'){
+
+                    let newList = [...images]
+
+                    newList.push(file.name)
+
+                    setImages(newList)
+                }
                 setFile('')
             })
             .catch(error => {
