@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {ProjectsContext} from './ProjectsContext'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -8,6 +9,21 @@ import Paper from '@material-ui/core/Paper'
 import consts from '../consts'
 
 function AboutMe(props) {
+
+  const {texts} = useContext(ProjectsContext)
+
+  const getText = (location) => {
+
+    let rtnValue = ''
+
+    for(let element of texts){
+        if(element.location === location){
+            rtnValue = element.text
+        }
+    }
+
+    return rtnValue
+}
   return (
     <div>
 
@@ -30,13 +46,16 @@ function AboutMe(props) {
                 </Typography>
 
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Coming soon
-                  <a href="https://wonderful-bhabha-1bf181.netlify.com">events</a>
+                  {getText('About-Introduction')}
                </Typography>
 
                 <Typography gutterBottom variant="h5" component="h2">
                   Mission
                 </Typography>
+
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {getText('About-Mission')}
+               </Typography>
 
               </CardContent>
             </Card>

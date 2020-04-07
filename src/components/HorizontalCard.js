@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext} from 'react';
+import {ProjectsContext} from './ProjectsContext'
 //import { Link as RLink } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card';
@@ -10,6 +11,24 @@ import Typography from '@material-ui/core/Typography';
 import consts from '../consts'
 
 const HorizontalCard = (props) => {
+
+    const {texts} = useContext(ProjectsContext)
+
+    const getText = (location) => {
+
+        let rtnValue = ''
+    
+        for(let element of texts){
+            if(element.location === location){
+                rtnValue = element.text
+            }
+        }
+
+        return rtnValue
+    }
+
+    
+
     return (
         <div>
             <div>
@@ -34,10 +53,7 @@ const HorizontalCard = (props) => {
 
                                 {/* Card description text */}
                                 <Typography variant="body2" color="textSecondary" component="p">
-                                    I am a software developer in the Salt Lake area.
-                                    My focus is currently on React.js, express.js, MongoDB, and Node.js.
-                                    I also have experience working with python and prostgres. Please look
-                                    at my projects and see the cool things I've created. Thanks!
+                                    {getText('MainPage-Introduction')}
                                 </Typography>
 
                             </CardContent>

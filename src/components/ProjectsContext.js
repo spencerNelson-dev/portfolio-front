@@ -9,6 +9,7 @@ const ProjectsProvider = (props) => {
 
     const [projects, setProjects] = useState([])
     const [images, setImages] = useState([])
+    const [texts, setTexts] = useState([])
 
     const getImgNames = () => {
 
@@ -33,11 +34,33 @@ const ProjectsProvider = (props) => {
         })
     }
 
+    const getTexts = () => {
+
+        return fetch(`${consts.uriBase}${consts.textsRoute}`,{
+            method: "GET"
+        })
+        .then(httpResonse => {
+            if(!httpResonse.ok){
+                throw new Error("Failed to fetch texts.")
+            }
+
+            return httpResonse.json()
+        })
+        .then(result => {
+            setTexts(result)
+        })
+        .catch(error => {
+            console.log(error)
+            setImages([])
+        })
+    }
+
 
     useEffect( () => {
 
         //only go to the server the
         //first time the app loads
+        // for projects, images and texts
         if( projects.length === 0){
 
             getProjects()
@@ -48,10 +71,13 @@ const ProjectsProvider = (props) => {
         if(images.length === 0){
             getImgNames()
         }
-    },[images.length, projects.length])
+        if(texts.length === 0){
+            getTexts()
+        }
+    },[images.length, projects.length, texts.length])
 
     return (
-        <ProjectsContext.Provider value={{ projects, setProjects, images, setImages }}>
+        <ProjectsContext.Provider value={{ projects, setProjects, images, setImages, texts, setTexts }}>
             {props.children}
         </ProjectsContext.Provider>
     )

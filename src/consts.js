@@ -9,7 +9,8 @@ const constants = {
 
     authRoute: "/api/v1/auth",
     projectsRoute: "/api/v1/projects",
-    usersRoute: "/api/v1/users"
+    usersRoute: "/api/v1/users",
+    textsRoute: "/api/v1/texts"
 }
 
 
