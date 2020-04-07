@@ -3,6 +3,7 @@ import AdminCreateProject from './AdminCreateProject';
 import Grid from '@material-ui/core/Grid'
 import UploadFile from './UploadFile';
 import AdminEditProject from './AdminEditProject';
+import AdminEditTexts from './AdminEditTexts'
 
 
 function AdminPage(props) {
@@ -31,6 +32,10 @@ function AdminPage(props) {
 
                         <Grid item>
                             <AdminEditProject />
+                        </Grid>
+
+                        <Grid item>
+                            <AdminEditTexts />
                         </Grid>
 
                     </Grid>

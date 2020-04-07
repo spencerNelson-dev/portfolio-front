@@ -7,23 +7,43 @@ function ChooseText(props) {
 
     const {texts} = useContext(ProjectsContext)
 
-    const [text, setText] = useState('')
+    const [fieldText, setFieldText] = useState('')
+
+    const getTextByLocation = (location) => {
+
+        let rtnValue = {}
+
+        for(let element of texts){
+            if(element.location === location){
+                rtnValue.text = element.text
+                rtnValue.id = element._id
+            }
+        }
+
+        return rtnValue
+    }
 
     const onChangeHandler = (event, child) => {
 
-        props.setMainText(child.value)
+        setFieldText(child.key)
+
+        let textInfo = getTextByLocation(child.key)
+
+        props.setEditTextId(textInfo.id)
+        props.setEditText(textInfo.text)
     }
+
 
     return (
         <React.Fragment>
                     <TextField select
-                        value={text}
-                        onChange={(event, child) => { setText(child.value)}}
+                        value={fieldText}
+                        onChange={onChangeHandler}
                         helperText="Select a text."
                         >
                         {
                             texts.map((text) => (
-                                <MenuItem key={text.location} value={text.text}>
+                                <MenuItem id={text._id}  key={text.location} value={text.location}>
                                     {text.location}
                                 </MenuItem>
                             ))

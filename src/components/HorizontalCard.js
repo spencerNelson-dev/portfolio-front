@@ -1,6 +1,6 @@
-import React, { useContext} from 'react';
-import {ProjectsContext} from './ProjectsContext'
-//import { Link as RLink } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { ProjectsContext } from './ProjectsContext'
+import { Link as RLink } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -12,14 +12,14 @@ import consts from '../consts'
 
 const HorizontalCard = (props) => {
 
-    const {texts} = useContext(ProjectsContext)
+    const { texts } = useContext(ProjectsContext)
 
     const getText = (location) => {
 
         let rtnValue = ''
-    
-        for(let element of texts){
-            if(element.location === location){
+
+        for (let element of texts) {
+            if (element.location === location) {
                 rtnValue = element.text
             }
         }
@@ -27,7 +27,7 @@ const HorizontalCard = (props) => {
         return rtnValue
     }
 
-    
+
 
     return (
         <div>
@@ -58,9 +58,10 @@ const HorizontalCard = (props) => {
 
                             </CardContent>
                             <CardActions>
-                                <Button size="small" color="primary" href='/about'>
+                                <Button size="small" color="primary" component={RLink}
+                                    to='/about'>
                                     More About Me
-                                </Button>
+                                     </Button>
                             </CardActions>
                         </Card>
                     </Grid>
