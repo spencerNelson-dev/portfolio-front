@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import UploadFile from './UploadFile';
 import AdminEditProject from './AdminEditProject';
 import AdminEditTexts from './AdminEditTexts'
+import AdminMessages from './AdminMessages'
 
 
 function AdminPage(props) {
@@ -40,6 +41,10 @@ function AdminPage(props) {
 
                     </Grid>
 
+                </Grid>
+
+                <Grid item>
+                    <AdminMessages />
                 </Grid>
 
             </Grid>
