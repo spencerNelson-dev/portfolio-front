@@ -99,8 +99,8 @@ function Header(props) {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
-                            Spencer Nelson {loggedIn ? <RLink to="/admin">Admin</RLink> : null}
-                            {loggedIn ? <Button onClick={onClickLogOut}>Log Out</Button> : null}
+                            Spencer Nelson {loggedIn ? <RLink id="admin" to="/admin">Admin</RLink> : null}
+                            {loggedIn ? <Button id="logout" onClick={onClickLogOut}>Log Out</Button> : null}
                         </Typography>
                         <Button color="inherit" component={RLink} to='/'>Home</Button>
                         <Button color="inherit" component={RLink} to='/portfolio'>Portfolio</Button>

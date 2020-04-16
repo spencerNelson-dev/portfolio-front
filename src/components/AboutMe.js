@@ -43,7 +43,7 @@ function AboutMe(props) {
     <div>
 
       <Grid container>
-        <Grid item xs={12} style={{ margin: 32 }}>
+        <Grid item xs={12} style={{ margin: '1% 15%' }}>
 
           <Paper elevation={6}>
             <Card >

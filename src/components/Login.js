@@ -122,6 +122,7 @@ export default function SignIn(props) {
           />
           <Button
             fullWidth
+            id="submit"
             variant="contained"
             color="primary"
             className={classes.submit}

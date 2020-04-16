@@ -95,6 +95,7 @@ function AdminCreateProject(props) {
                 <div className={classes.root}>
                     <TextField required
                         label="Title"
+                        id='createTitle'
                         value={title}
                         onChange={(event) => setTitle(event.target.value)}
                     />
@@ -102,22 +103,26 @@ function AdminCreateProject(props) {
                     <TextField required
                         multiline
                         label="Text"
+                        id='createText'
                         value={text}
                         onChange={(event) => setText(event.target.value)}
                     />
                     <br />
                     <TextField label="Live Link"
+                        id='createLiveLink'
                         value={liveLink}
                         onChange={(event) => setLiveLink(event.target.value)}
                     />
                     <br />
                     <TextField label="GitHub Links"
+                        id='createGitHubLinks'
                         multiline value={gitHubLinks}
                         onChange={(event) => setGitHubLinks(event.target.value)}
                         helperText="multiple links seperated with commas"
                     />
                     <br /><br />
                     <TextField select
+                        id='createImgSelect'
                         value={imgSrc}
                         onChange={(event, child) => { setImgSrc(child.key)}}
                         helperText="Please select an image"
@@ -135,6 +140,7 @@ function AdminCreateProject(props) {
                 </div>
                 <br />
                 <Button variant='contained'
+                    id='createButton'
                     color='primary'
                     onClick={onCreate}>Create!</Button>
             </Paper>

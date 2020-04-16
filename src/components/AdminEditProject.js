@@ -182,12 +182,13 @@ function AdminEditProject(props) {
                 <h3>Edit Project</h3>
                 <div className={classes.root}>
                     <TextField select
+                        id='editProjectSelect'
                         value={id}
                         onChange={onProjectSelect}
                         helperText="Please select a project">
                         {
                             projects.map((project) => (
-                                <MenuItem key={project._id} value={project._id}>
+                                <MenuItem id={project.title.split(" ")[0]} key={project._id} value={project._id}>
                                     {project.title}
                                 </MenuItem>
                             ))
@@ -196,6 +197,7 @@ function AdminEditProject(props) {
                     <br />
                     <TextField required
                         label="Title"
+                        id="editTitle"
                         value={title}
                         onChange={(event) => setTitle(event.target.value)}
                     />
@@ -203,29 +205,33 @@ function AdminEditProject(props) {
                     <TextField required
                         multiline
                         label="Text"
+                        id="editText"
                         value={text}
                         onChange={(event) => setText(event.target.value)}
                     />
                     <br />
                     <TextField label="Live Link"
+                        id="editLiveLink"
                         value={liveLink}
                         onChange={(event) => setLiveLink(event.target.value)}
                     />
                     <br />
                     <TextField label="GitHub Links"
+                        id="editGitHubLinks"
                         multiline value={gitHubLinks}
                         onChange={(event) => setGitHubLinks(event.target.value)}
                         helperText="multiple links seperated with commas"
                     />
                     <br /><br />
                     <TextField select
+                        id='editImageSelect'
                         value={imgSrc}
                         onChange={(event, child) => { setImgSrc(child.key) }}
                         helperText="Please select an image"
                     >
                         {
                             images.map((img) => (
-                                <MenuItem key={img} value={img}>
+                                <MenuItem id={img} key={img} value={img}>
                                     {img}
                                 </MenuItem>
                             ))
@@ -236,6 +242,7 @@ function AdminEditProject(props) {
                 </div>
                 <br />
                 <Button variant='contained'
+                    id='editButton'
                     color='primary'
                     onClick={onEdit}
                 >

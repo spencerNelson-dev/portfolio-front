@@ -91,7 +91,8 @@ function ProjectCard(props) {
                 <CardMedia
                     className={classes.media}
                     image={`${consts.uriBase}/public/images/${props.card.imgSrc}`}
-                    title="Contemplative Reptile"
+                    title={props.card.imgSrc}
+                    id={props.card.imgSrc}
                 />
                 <CardContent>
 
@@ -114,7 +115,7 @@ function ProjectCard(props) {
                     {
                         props.card.liveLink !== "" ? (
 
-                            <Button href={props.card.liveLink} size="small" color="primary">
+                            <Button href={props.card.liveLink} target="_blank" size="small" color="primary">
                                 Live Site
                             </Button>
 
@@ -128,7 +129,7 @@ function ProjectCard(props) {
                         props.card.gitHubLinks !== [] ? (
                             props.card.gitHubLinks.map((value, index)=> {
                                 return(
-                                    <Button key={value} href={value} color="primary">{`GitHub ${index + 1}`}</Button>
+                                    <Button target="_blank" key={value} href={value} color="primary">{`GitHub ${index + 1}`}</Button>
                                 )
                             })
                         ):(
@@ -138,7 +139,9 @@ function ProjectCard(props) {
                     {/* Delete Button (only if logged in) */}
                     {
                         loggedIn ? (
-                            <Button onClick={onClickDelete} color='secondary'>Delete</Button>
+                            <Button
+                            id={props.card.title.split(" ")[0] + 'Delete'}
+                             onClick={onClickDelete} color='secondary'>Delete</Button>
                         ):(
                             null
                         )
