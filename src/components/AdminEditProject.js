@@ -140,10 +140,16 @@ function AdminEditProject(props) {
             })
             .then(result => {
 
+                console.log(result)
+
+                // if an error was returned
+                if(result.message !== undefined){
+                    alert(result.message)
+                }
                 // if a row was modified
                 // update our project in the
                 // project array
-                if(result.nModified === 1){
+                else if(result.nModified === 1){
 
                     let newList = [...projects]
 

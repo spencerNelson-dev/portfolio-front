@@ -32,6 +32,9 @@ function AdminEditTexts(props) {
         })
         .then(result => {
 
+            console.log(result)
+
+            if(result.message === undefined){
                 // if a row was modified
                 // update our text in the
                 // texts array
@@ -57,6 +60,9 @@ function AdminEditTexts(props) {
                 } else {
                     alert("Nothing changed")
                 }
+            } else {
+                alert(result.message)
+            }
 
         })
 

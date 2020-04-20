@@ -17,7 +17,7 @@ function MainRouter(props) {
     return (
         <div>
             <Router>
-                {/* <ScrollToTop /> */}
+                <ScrollToTop />
                 <LoginProvider>
                     <ProjectsProvider>
                         <Header></Header>

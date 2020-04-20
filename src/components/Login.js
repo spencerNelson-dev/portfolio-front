@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import consts from '../consts'
 import { LoginContext } from './LoginContext'
+import jwt from 'jsonwebtoken'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -83,6 +84,18 @@ export default function SignIn(props) {
       })
   }
 
+  const onGuestClick = () => {
+
+    // Give the user a dummy token
+    // that will allow the user to see
+
+    let guestToken = jwt.sign({user: 'guest'}, 'key', {expiresIn: '1h'})
+
+    writeToken(guestToken)
+
+    props.history.push('/admin')
+  }
+
   return (
     <div>
       <Container component="main" maxWidth="xs">
@@ -129,6 +142,16 @@ export default function SignIn(props) {
             onClick={onClick}
           >
             Sign In
+          </Button>
+          <Button
+            fullWidth
+            id="submit"
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+            onClick={onGuestClick}
+          >
+            Explore the site as a guest
           </Button>
         </div>
       </Container>

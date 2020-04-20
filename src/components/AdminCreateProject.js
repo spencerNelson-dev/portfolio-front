@@ -34,7 +34,7 @@ function AdminCreateProject(props) {
     const [imgSrc, setImgSrc] = useState('')
 
     const { images, projects, setProjects } = useContext(ProjectsContext)
-    const {token} = useContext(LoginContext)
+    const { token } = useContext(LoginContext)
 
     const clearInputs = () => {
         setTitle('')
@@ -73,15 +73,22 @@ function AdminCreateProject(props) {
             })
             .then(result => {
 
-                // update projects array
-                let newList = [...projects]
+                console.log(result)
 
-                newList.push(result)
+                if (result.message === undefined) {
+                    // update projects array
+                    let newList = [...projects]
 
-                setProjects(newList)
+                    newList.push(result)
 
-                //Clear the inputs
-                clearInputs()
+                    setProjects(newList)
+
+                    //Clear the inputs
+                    clearInputs()
+                } else {
+                    alert(result.message)
+                }
+
             })
             .catch(error => {
                 alert(error)
@@ -124,9 +131,9 @@ function AdminCreateProject(props) {
                     <TextField select
                         id='createImgSelect'
                         value={imgSrc}
-                        onChange={(event, child) => { setImgSrc(child.key)}}
+                        onChange={(event, child) => { setImgSrc(child.key) }}
                         helperText="Please select an image"
-                        >
+                    >
                         {
                             images.map((img) => (
                                 <MenuItem key={img} value={img}>
