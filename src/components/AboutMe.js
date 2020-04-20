@@ -86,6 +86,11 @@ function AboutMe(props) {
                   })
                 }
 
+                <Typography gutterBottom variant="h5" component="h2">
+                  Resume
+                </Typography>
+                <a href={`${consts.uriBase}/resume`}>Resume</a>
+
               </CardContent>
             </Card>
           </Paper>
